@@ -1,17 +1,10 @@
-from config import Config
-from models import Base, Airport
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from database import Base, engine, db_session
+from models import Airport
 import csv
 import os
 
-config = Config()
-engine = create_engine(config.SQLALCHEMY_DATABASE_URI)
 Base.metadata.create_all(engine)
-
-session = sessionmaker()
-session.configure(bind=engine)
-s = session()
+s = db_session
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 file_name = os.path.join(basedir, "data", "airports.csv")
@@ -26,8 +19,8 @@ try:
                 name=record[1],
                 city=record[2],
                 country=record[3],
-                icao_code=record[4],
-                iata_code=record[5],
+                iata_code=record[4],
+                icao_code=record[5],
                 latitude=record[6],
                 longitude=record[7],
                 altitude_feet=record[8],
