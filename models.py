@@ -12,8 +12,8 @@ class Airport(Base):
     city = Column(String(100), nullable=False)
     country = Column(String(100), nullable=False)
 
-    iata_code = Column(String(3), nullable=True)
-    icao_code = Column(String(4), nullable=True)
+    iata_code = Column(String(3), nullable=True, index=True)
+    icao_code = Column(String(4), nullable=True, index=True)
 
     latitude = Column(Float, nullable=False)
     longitude = Column(Float, nullable=False)
