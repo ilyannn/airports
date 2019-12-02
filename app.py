@@ -22,7 +22,7 @@ def get_airports():
 
 @app.route('/iata/<code>')
 def get_by_iata_code(code):
-    results = Airport.query.filter_by(iata_code=code)
+    results = Airport.query.filter_by(iata_code=code.upper())
     print(results.all())
     return airport_serializer.jsonify(results.first_or_404())
 
